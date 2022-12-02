@@ -15,13 +15,13 @@ end
 # Setups the template handling
 require "action_view/template"
 require 'spreadsheet'
-ActionView::Template.register_template_handler :rxls, lambda { |template|
+ActionView::Template.register_template_handler :rxls, lambda { |template, _|
   SpreadsheetOnRails.render_xls_string(template.source)
 }
 
 # Why doesn't the aboce template handler catch this one as well?
 # Added for backwards compatibility.
-ActionView::Template.register_template_handler :"xls.rxls", lambda { |template|
+ActionView::Template.register_template_handler :"xls.rxls", lambda { |template, _|
   SpreadsheetOnRails.render_xls_string(template.source)
 }
 
